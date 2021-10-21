@@ -2,6 +2,8 @@
 
 namespace App\Controller;
 
+header('Access-Control-Allow-Origin: *');
+
 use Doctrine\DBAL\Query;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
