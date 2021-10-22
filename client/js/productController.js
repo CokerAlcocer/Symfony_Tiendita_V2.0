@@ -1,8 +1,10 @@
 
-const getProducts = () =>{
-    $.ajax({
+const url = 'http://localhost/tiendita/server/public/index.php'
+
+const getProducts = async() =>{
+    await $.ajax({
         type: 'GET',
-        url: 'http://localhost/Symfony/rest/public/'
+        url: url+'/product'
     }).done(res => {
         console.log(res.listProducts)
         let listProducts = res.listProducts;
@@ -32,4 +34,27 @@ const getProducts = () =>{
     })
 }
 
-getProducts();
+const getById = async (id) => {
+    await $.ajax({
+        type: 'GET',
+        url: url+'/product/'+id
+    }).done(res => {
+        console.log(res);
+    });
+}
+
+const create = () => {
+    let name = document.getElementById("name").value;
+    let precio = document.getElementById("precio").value;
+
+    let object = {name, precio};
+    console.log(object);
+
+    $.ajax({
+        type: 'POST',
+        url: url+'/product/create',
+        data: object
+    }).done(res => {
+        console.log(res);
+    });
+}

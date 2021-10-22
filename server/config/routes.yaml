@@ -1,0 +1,15 @@
+findAllProducts:
+   path: /product
+   controller: App\Controller\ProductsController::findAllProducts
+
+productById:
+   path: /product/{id}
+   controller: App\Controller\ProductsController::findById
+
+productCreate:
+   path: /product/create
+   controller: App\Controller\ProductsController::create
+
+productDelete:
+   path: /product/delete/{id}
+   controller: App\Controller\ProductsController::delete

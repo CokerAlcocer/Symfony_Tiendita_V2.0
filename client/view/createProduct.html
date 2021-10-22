@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=table, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <title>Productos</title>
+</head>
+<body>
+    <div class="container">
+        <h1 class="mt-4 mb-0">Crear Producto</h1>
+        <span class="badge bg-dark text-light">Angel Yazveck Alcocer Durán - 4B DSM</span>
+        <hr class="bg-dark">
+        <a href="../index.html" class="btn btn-dark">Lista de Productos</a>
+        <div class="row mt-3 border border-dark">
+            <div class="col-12 p-2 bg-dark text-light">
+                <h3>Datos del producto</h3>
+            </div>
+            <div class="col-9 col-md-4 form-group">
+                <label>Nombre del Producto <span class="text-danger">*</span></label>
+                <input class="form-control" type="text" name="name" id="name" autocomplete="off" required>
+            </div>
+            <div class="col-3 col-md-8 form-group">
+                <label>Precio <span class="text-danger">*</span></label>
+                <input class="form-control" type="number" name="precio" id="precio" autocomplete="off" required>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+    <script src="../js/productController.js"></script>
+    <script src="../main.js"></script>
+</body>
+</html>
