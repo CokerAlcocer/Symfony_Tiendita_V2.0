@@ -36,7 +36,9 @@ class ProductsController extends AbstractController{
 
     public function findById($id){
         $em = $this->getDoctrine()->getManager();
-        $product = $em->getRepository('App:Products')->findOneBy(['idproduct' => $id]);
+        $query = $em->createQuery('SELECT p.idproduct, p.name, p.precio, p.status FROM App:Products p WHERE p.idproduct = :id');
+        $query->setParameter(':id', $id);
+        $product = $query->getResult();
 
         $data = [
             'status' => 200,
@@ -82,7 +84,7 @@ class ProductsController extends AbstractController{
 
         // BAJA LÓGICA
         $product->setStatus(0);
-        $em->presist($product);
+        $em->persist($product);
         $em->flush();
 
         $data = [
