@@ -37,23 +37,17 @@ const getProducts = async() =>{
 }
 
 const getById = async (id) => {
-    await $.ajax({
+    return await $.ajax({
         type: 'GET',
         url: url+'/product/'+id
-    }).done(res => {
-        console.log(res);
-    });
+    }).done(res => res);
 }
 
 const getDetailsById = async (id) => {
-    await $.ajax({
-        type: 'GET',
-        url: url+'/product/'+id
-    }).done(res => {
-        let label = $('#inf');
-        console.log(res);
-        document.getElementById('inf').value = res.name;
-    });
+    let product = await getById(id);
+    let name = document.getElementById('name').value = product.product[0].name;
+    let precio = document.getElementById('precio').value = product.product[0].precio;
+    let status = document.getElementById('status').value = product.product[0].status ? "Activo" : "Inactivo";
 }
 
 const create = () => {
