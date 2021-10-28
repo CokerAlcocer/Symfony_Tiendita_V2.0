@@ -2,10 +2,6 @@ findAllProducts:
    path: /product
    controller: App\Controller\ProductsController::findAllProducts
 
-productById:
-   path: /product/{id}
-   controller: App\Controller\ProductsController::findById
-
 productCreate:
    path: /product/create
    controller: App\Controller\ProductsController::create
@@ -13,3 +9,11 @@ productCreate:
 productDelete:
    path: /product/delete/{id}
    controller: App\Controller\ProductsController::delete
+
+productUpdate:
+   path: /product/update/{id}
+   controller: App\Controller\ProductsController::update
+
+productById:
+   path: /product/{id}
+   controller: App\Controller\ProductsController::findById

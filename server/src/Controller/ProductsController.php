@@ -51,28 +51,43 @@ class ProductsController extends AbstractController{
 
     public function create(Request $request){
         $em = $this->getDoctrine()->getManager();
-        $json = $request->get('data', null);
-        $params = json_decode($json);
+        
+        $name = $request->get('name', null);
+        $price = $request->get('precio', null);
 
-        if($params != null){
-            $product = new \App\Entity\Products();
+        $product = new \App\Entity\Products();
 
-            $product->setName($params->name);
-            $product->setName($params->precio);
-            $product->setStatus(1);
-            $em->persist($product);
-            $em->flush();
-    
-            $data = [
-                'status' => 200,
-                'message' => 'Se ha creado correctamente',
-                'product' => $product
-            ];
+        $product->setName($name);
+        $product->setPrecio($price);
+        $product->setStatus(1);
+        
+        $em->persist($product);
+        $em->flush();
+
+        $data = [
+            'status' => 200,
+            'message' => 'Se ha creado correctamente'
+        ];
+
+        return new JsonResponse($data);
+    }
+
+    public function update(Request $request, $id){
+        $em = $this->getDoctrine()->getManager();
+        $query = $em->createQuery('UPDATE App:Products p SET p.name = :name, p.precio = :precio WHERE p.idproduct = :id');
+        
+        $name = $request->get('name', null);
+        $price = $request->get('precio', null);
+
+        $query->setParameter(':name', $name);
+        $query->setParameter(':precio', $price);
+        $query->setParameter(':id', $id);
+        $flag = $query->getResult();
+        
+        if($flag == 1){
+            $data = ['status' => 200, 'message' => 'Producto actualizado'];
         }else{
-            $data = [
-                'status' => 404,
-                'message' => 'No se ha encontrado correctamente'
-            ];
+            $data = ['status' => 400, 'message' => 'Error de actualización'];
         }
 
         return new JsonResponse($data);
