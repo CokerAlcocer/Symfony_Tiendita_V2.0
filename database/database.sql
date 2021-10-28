@@ -1,5 +1,5 @@
-CREATE DATABASE mitiendita;
-USE mitiendita;
+CREATE DATABASE tiendita;
+USE tiendita;
 
 CREATE TABLE products(
     idProduct INT AUTO_INCREMENT,
