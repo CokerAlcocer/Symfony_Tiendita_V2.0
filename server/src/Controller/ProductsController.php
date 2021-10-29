@@ -95,16 +95,14 @@ class ProductsController extends AbstractController{
 
     public function delete($id){
         $em = $this->getDoctrine()->getManager();
-        $product = $em->getRepository('App:Products')->findOneBy(['idproduct' => $id]);
-
-        // BAJA LÓGICA
-        $product->setStatus(0);
-        $em->persist($product);
-        $em->flush();
+        
+        $query = $em->createQuery('UPDATE App:Products SET p.status = 0 WHERE p.idproduct = :id');
+        $query->setParameter(':id', $id);
+        $product = $query->getResult();
 
         $data = [
             'status' => 200,
-            'message' => 'Se ha eliminado correctamente',
+            'message' => 'Se se deshabilitó el producto',
             'product' => $product
         ];
 
